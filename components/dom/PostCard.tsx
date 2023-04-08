@@ -1,15 +1,8 @@
 import Delete from '../svgs/Delete'
 import Edit from '../svgs/Edit'
+import { PostCardProp, PostCardData } from '../../interfaces/interfaces'
 
-interface PostCardData {
-  title: string;
-  content: string;
-  created_datetime: string;
-  username: string;
-}
-interface PostCardProp {
-  data: PostCardData
-}
+
 export default function PostCard({ data }: PostCardProp) {
   const { title, content, created_datetime, username }: PostCardData = data
 
