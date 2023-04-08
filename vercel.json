@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "codeleap/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "codeleap/wsgi.py"
+    }
+  ]
+}
