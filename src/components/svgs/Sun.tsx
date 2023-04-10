@@ -1,5 +1,5 @@
 import React from 'react'
-import { svgIconsProps } from '../../interfaces/interfaces'
+import { svgIconsProps } from '../../interfaces'
 
 export default function Sun({ className }: svgIconsProps) {
   return (

@@ -1,5 +1,5 @@
 import Header from '../dom/Header'
-import { ContainerProps } from '../../interfaces/interfaces'
+import { ContainerProps } from '../../interfaces'
 import React from 'react'
 
 export default function Container({ children }: ContainerProps) {

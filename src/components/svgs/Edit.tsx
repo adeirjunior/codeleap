@@ -1,4 +1,5 @@
-import { svgIconsProps } from '../../interfaces/interfaces'
+import React from 'react'
+import { svgIconsProps } from '../../interfaces'
 
 export default function Edit({ className }: svgIconsProps) {
   return (

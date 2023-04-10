@@ -1,6 +1,9 @@
-export const getCareers = async () => {
-  const response = await fetch("https://codeleap-backend.vercel.app/api/careers/");
-  const data = await response.json();
-  return data
-};
+import {
+  fetchCareers,
+  deleteCareer,
+} from '../redux/features/careersSlice';
 
+export {
+  fetchCareers,
+  deleteCareer,
+};

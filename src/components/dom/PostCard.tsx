@@ -1,10 +1,13 @@
 import Delete from '../svgs/Delete'
 import Edit from '../svgs/Edit'
-import { PostCardProp, PostCardData } from '../../interfaces/interfaces'
+import { PostCardProp, PostCardData } from '../../interfaces'
+import React from 'react'
+import { deleteCareer } from '../../actions'
 
 
 export default function PostCard({ data }: PostCardProp) {
-  const { title, content, created_datetime, username }: PostCardData = data
+  const { id, title, content, created_datetime, username }: PostCardData = data
+
 
   return (
     <div className="border-[#999999] border rounded-2xl overflow-hidden">
@@ -15,6 +18,7 @@ export default function PostCard({ data }: PostCardProp) {
             title="Delete Button"
             type="button"
             className="mr-2 sm:mr-6 cursor-pointer"
+            onClick={() => deleteCareer(id)}
           >
             <Delete />
           </button>

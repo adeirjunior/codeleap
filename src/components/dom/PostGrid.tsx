@@ -1,7 +1,7 @@
 import React from 'react'
 import posts from '../../data/posts'
 import PostCard from './PostCard'
-import { PostCardData, PostCardProp, PostGridProp } from '../../interfaces/interfaces'
+import { PostCardData, PostCardProp, PostGridProp } from '../../interfaces'
 
 
 
