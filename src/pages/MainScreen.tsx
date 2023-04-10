@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../redux/store"
 
 function MainScreen() {
   const dispatch: AppDispatch = useDispatch()
-  const { careers } = useSelector((state: RootState) => state.careers)
+  const careers = useSelector((state: RootState) => state.careers)
   
   useEffect(() => {
     dispatch(fetchCareers())
@@ -16,7 +16,8 @@ function MainScreen() {
   return (
     <>
       <Form />
-      <PostGrid careers={careers}/>
+      {careers.isLoading && "Loading..."}
+      {!careers.isLoading && <PostGrid careers={careers.careers}/>}
     </>
   );
 }

@@ -16,14 +16,13 @@ const initialState: CareerState = {
 
 export const fetchCareers = createAsyncThunk('career/fetchCareers', async () => {
   const response = await fetch(API_URL)
-  console.log(response)
   return response.json()
 })
 
 export const deleteCareer = createAsyncThunk(
   'career/deleteCareer',
   async (careerId: number) => {
-    const response = await fetch(`${API_URL}/${careerId}`, {
+    const response = await fetch(`${API_URL}${careerId}`, {
       method: 'DELETE',
     });
     if (!response.ok) {

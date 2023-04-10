@@ -1,14 +1,20 @@
 import Delete from '../svgs/Delete'
 import Edit from '../svgs/Edit'
-import { PostCardProp, PostCardData } from '../../interfaces'
+import { CareerCardProp, Career } from '../../interfaces'
+import { useDispatch } from "react-redux"
 import React from 'react'
 import { deleteCareer } from '../../actions'
+import { AppDispatch } from '../../redux/store'
 
 
-export default function PostCard({ data }: PostCardProp) {
-  const { id, title, content, created_datetime, username }: PostCardData = data
+export default function CareerCard({ data }: CareerCardProp) {
+  const { id, title, content, created_datetime, username }: Career = data
+  const dispatch: AppDispatch = useDispatch()
 
 
+  const handleClick = (id: number) => {
+    dispatch(deleteCareer(id))
+  }
   return (
     <div className="border-[#999999] border rounded-2xl overflow-hidden">
       <div className="bg-primary-color flex justify-between px-4 py-4 items-center">
@@ -18,7 +24,7 @@ export default function PostCard({ data }: PostCardProp) {
             title="Delete Button"
             type="button"
             className="mr-2 sm:mr-6 cursor-pointer"
-            onClick={() => deleteCareer(id)}
+            onClick={() => handleClick(id)}
           >
             <Delete />
           </button>
