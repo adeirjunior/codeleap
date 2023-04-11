@@ -1,5 +1,8 @@
 import { ReactNode } from 'react'
 
+export interface User {
+  name: string
+}
 export interface svgIconsProps {
   className?: string
 }

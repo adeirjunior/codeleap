@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Career } from "../../interfaces";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
 import { addCareer } from "../../actions";
 
 export default function Form() {
-  const [career, setCareer] = useState<Career>({content: '', title: '', username: 'Adeir', created_datetime: null, id: null})
+  const { user: { name } } = useSelector((state: RootState) => state.user)
+  const [career, setCareer] = useState<Career>({content: '', title: '', username: name, created_datetime: null, id: null})
   const dispatch: AppDispatch = useDispatch()
 
     return (

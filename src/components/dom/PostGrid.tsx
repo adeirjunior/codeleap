@@ -1,15 +1,14 @@
 import React from 'react'
-import posts from '../../data/posts'
 import PostCard from './PostCard'
-import { PostCardData, PostCardProp, PostGridProp } from '../../interfaces'
+import { Career, CareersGridProp } from '../../interfaces'
 
 
 
-export default function PostGrid({ careers }: PostGridProp) {
+export default function CareerGrid({ careers }: CareersGridProp) {
 
   return (
     <div className="grid grid-cols-1 gap-5">
-      {careers.map((career) => (
+      {careers.map((career: Career) => (
         <PostCard key={career.id} data={career} />
       ))}
     </div>
