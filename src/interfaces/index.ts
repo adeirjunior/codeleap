@@ -14,10 +14,16 @@ export interface KeydownEvent {
 }
 
 export interface Career {
-  id: number
+  id: number | null
   title: string
   content: string
-  created_datetime: string
+  created_datetime: string | null
+  username: string
+}
+
+export interface AddCareer {
+  title: string
+  content: string
   username: string
 }
 

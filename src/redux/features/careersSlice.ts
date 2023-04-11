@@ -21,7 +21,7 @@ export const fetchCareers = createAsyncThunk('career/fetchCareers', async () => 
 
 export const deleteCareer = createAsyncThunk(
   'career/deleteCareer',
-  async (careerId: number) => {
+  async (careerId: number | null) => {
     const response = await fetch(`${API_URL}${careerId}`, {
       method: 'DELETE',
     });
@@ -29,6 +29,26 @@ export const deleteCareer = createAsyncThunk(
       throw new Error('Failed to delete career.');
     }
     return careerId;
+  },
+);
+
+export const addCareer = createAsyncThunk(
+  'career/addCareer',
+  async (career: Career) => {
+    const { content, title, username } = career
+    const formatCareer = {
+      username,
+      title,
+      content
+    }
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify(formatCareer)
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete career.');
+    }
+    return response.body;
   },
 );
 
@@ -63,7 +83,19 @@ const careerSlice = createSlice({
       .addCase(deleteCareer.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message ?? 'Failed to delete career.';
-      });
+      })
+      .addCase(addCareer.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addCareer.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.careers.unshift(action.meta.arg)
+      })
+      .addCase(addCareer.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? 'Failed to add career.'
+      })
   },
 });
 

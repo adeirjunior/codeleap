@@ -10,17 +10,12 @@ import { AppDispatch } from '../../redux/store'
 export default function CareerCard({ data }: CareerCardProp) {
   const { id, title, content, created_datetime, username }: Career = data
   const dispatch: AppDispatch = useDispatch()
-  const dateOld = new Date(created_datetime)
+  const dateOld = new Date(created_datetime ?? '')
   const [now, setNow] = useState(new Date())
 
-  const handleClick = (id: number) => {
-    dispatch(deleteCareer(id))
-  }
-
   function diffHour(timeAgo: Date): number {
-    const agora: Date = new Date()
-    const diferenca: number = agora.getTime() - timeAgo.getTime()
-    return diferenca
+    const diff: number = now.getTime() - timeAgo.getTime()
+    return diff
   }
 
   useEffect(() => {
@@ -34,9 +29,9 @@ export default function CareerCard({ data }: CareerCardProp) {
   }, [])
 
   function timeAgo(dateOld: Date): string {
-    const diferenca: number = diffHour(dateOld)
+    const diff: number = diffHour(dateOld)
   
-    const seconds: number = Math.floor(diferenca / 1000)
+    const seconds: number = Math.floor(diff / 1000)
     const minutes: number = Math.floor(seconds / 60)
     const hours: number = Math.floor(minutes / 60)
     const days: number = Math.floor(hours / 24)
@@ -70,7 +65,7 @@ export default function CareerCard({ data }: CareerCardProp) {
             title="Delete Button"
             type="button"
             className="mr-2 sm:mr-6 cursor-pointer"
-            onClick={() => handleClick(id)}
+            onClick={() => dispatch(deleteCareer(id))}
           >
             <Delete />
           </button>
