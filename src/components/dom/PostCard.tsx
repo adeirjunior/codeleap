@@ -2,9 +2,11 @@ import Delete from '../svgs/Delete'
 import Edit from '../svgs/Edit'
 import { CareerCardProp, Career } from '../../interfaces'
 import { useDispatch } from "react-redux"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { deleteCareer } from '../../actions'
 import { AppDispatch } from '../../redux/store'
+import { CSSTransition } from 'react-transition-group'
+import DeleteModal from './modals/DeleteModal'
 
 
 export default function CareerCard({ data }: CareerCardProp) {
@@ -12,6 +14,10 @@ export default function CareerCard({ data }: CareerCardProp) {
   const dispatch: AppDispatch = useDispatch()
   const dateOld = new Date(created_datetime ?? '')
   const [now, setNow] = useState(new Date())
+  const [showButton, setShowButton] = useState<boolean>()
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+  const nodeRef = useRef(null);
+  const nodeRef2 = useRef(null);
 
   function diffHour(timeAgo: Date): number {
     const diff: number = now.getTime() - timeAgo.getTime()
@@ -56,7 +62,7 @@ export default function CareerCard({ data }: CareerCardProp) {
     }
   }
   
-  return (
+  return <>
     <div className="border-[#999999] border rounded-2xl overflow-hidden">
       <div className="bg-primary-color flex justify-between px-4 py-4 items-center">
         <h3 className="text-white font-bold text-xl">{title}</h3>
@@ -65,7 +71,7 @@ export default function CareerCard({ data }: CareerCardProp) {
             title="Delete Button"
             type="button"
             className="mr-2 sm:mr-6 cursor-pointer"
-            onClick={() => dispatch(deleteCareer(id))}
+            onClick={() => {setShowMessage(true)}}
           >
             <Delete />
           </button>
@@ -82,5 +88,28 @@ export default function CareerCard({ data }: CareerCardProp) {
         <p>{content}</p>
       </div>
     </div>
-  )
+      <CSSTransition
+        in={showMessage}
+        nodeRef={nodeRef}
+        timeout={300}
+        classNames="alert"
+        unmountOnExit
+        onEnter={() => setShowButton(false)}
+        onExited={() => setShowButton(true)}
+      >
+        <div className='fixed z-10 top-0 left-0 w-full h-full' ref={nodeRef}>
+        <DeleteModal id={id} setShowMessage={setShowMessage} />
+        </div>
+      </CSSTransition>
+      <CSSTransition
+      in={showMessage}
+      nodeRef={nodeRef2}
+      timeout={300}
+      classNames="background"
+      unmountOnExit
+      onEnter={() => setShowButton(false)}
+      onExited={() => setShowButton(true)}>
+        <div ref={nodeRef2} className='fixed top-0 left-0 w-full h-full bg-[#777777] opacity-80'></div>
+      </CSSTransition>
+  </>
 }

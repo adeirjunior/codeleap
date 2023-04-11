@@ -21,7 +21,7 @@ function Signup() {
 
   return (
     <div className='fixed flex justify-center items-center top-0 left-0 w-full h-full bg-gray-light'>
-      <div className='bg-white flex items-center w-full max-w-[500px] flex-col p-6 rounded-xl border border-[#1d1d1d]'>
+      <div className='bg-white flex items-center w-full max-w-[500px] flex-col p-6 rounded-xl border border-[#CCCCCC]'>
         
         <div className='flex flex-col w-full'>
         <h2 className='text-xl font-bold mb-5'>Welcome to CodeLeap network!</h2>
