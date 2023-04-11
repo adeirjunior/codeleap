@@ -14,10 +14,9 @@ function DeleteModal({ setShowMessage, id }) {
                 Cancel
             </button>
             <button className="bg-[#FF5151] text-white py-1 px-6 rounded-lg font-bold" type="button" onClick={() => {setShowMessage(false); dispatch(deleteCareer(id))}}>
-                Close
+                Delete
             </button>
         </div>
-        
     </div>
   );
 }

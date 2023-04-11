@@ -1,7 +1,8 @@
 import {
   fetchCareers,
   deleteCareer,
-  addCareer
+  addCareer,
+  updateCareer
 } from '../redux/features/careersSlice';
 
 import {
@@ -12,5 +13,6 @@ export {
   fetchCareers,
   deleteCareer,
   addCareer,
+  updateCareer,
   addUser
 };

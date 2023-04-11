@@ -46,7 +46,26 @@ export const addCareer = createAsyncThunk(
       body: JSON.stringify(formatCareer)
     });
     if (!response.ok) {
-      throw new Error('Failed to delete career.');
+      throw new Error('Failed to add career.');
+    }
+    return response.body;
+  },
+);
+
+export const updateCareer = createAsyncThunk(
+  'career/updateCareer',
+  async (career: Career) => {
+    const { content, title, id } = career
+    const formatCareer = {
+      title,
+      content
+    }
+    const response = await fetch(`${API_URL}${id}/`, {
+      method: 'PATCH',
+      body: JSON.stringify(formatCareer)
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update career.');
     }
     return response.body;
   },

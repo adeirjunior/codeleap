@@ -7,6 +7,7 @@ import { deleteCareer } from '../../actions'
 import { AppDispatch } from '../../redux/store'
 import { CSSTransition } from 'react-transition-group'
 import DeleteModal from './modals/DeleteModal'
+import UpdateModal from './modals/UpdateModal'
 
 
 export default function CareerCard({ data }: CareerCardProp) {
@@ -15,9 +16,11 @@ export default function CareerCard({ data }: CareerCardProp) {
   const dateOld = new Date(created_datetime ?? '')
   const [now, setNow] = useState(new Date())
   const [showButton, setShowButton] = useState<boolean>()
-  const [showMessage, setShowMessage] = useState<boolean>(false)
+  const [showDeleteMessage, setShowDeleteMessage] = useState<boolean>(false)
+  const [showUpdateMessage, setShowUpdateMessage] = useState<boolean>(false)
   const nodeRef = useRef(null);
   const nodeRef2 = useRef(null);
+  const nodeRef3 = useRef(null);
 
   function diffHour(timeAgo: Date): number {
     const diff: number = now.getTime() - timeAgo.getTime()
@@ -71,11 +74,11 @@ export default function CareerCard({ data }: CareerCardProp) {
             title="Delete Button"
             type="button"
             className="mr-2 sm:mr-6 cursor-pointer"
-            onClick={() => {setShowMessage(true)}}
+            onClick={() => {setShowDeleteMessage(true)}}
           >
             <Delete />
           </button>
-          <button title="Edit Button" type="button" className="cursor-pointer">
+          <button title="Edit Button" type="button" className="cursor-pointer" onClick={() => {setShowUpdateMessage(true)}}>
             <Edit />
           </button>
         </div>
@@ -89,7 +92,7 @@ export default function CareerCard({ data }: CareerCardProp) {
       </div>
     </div>
       <CSSTransition
-        in={showMessage}
+        in={showDeleteMessage}
         nodeRef={nodeRef}
         timeout={300}
         classNames="alert"
@@ -98,11 +101,24 @@ export default function CareerCard({ data }: CareerCardProp) {
         onExited={() => setShowButton(true)}
       >
         <div className='fixed z-10 top-0 left-0 w-full h-full' ref={nodeRef}>
-        <DeleteModal id={id} setShowMessage={setShowMessage} />
+        <DeleteModal id={id} setShowMessage={setShowDeleteMessage} />
         </div>
       </CSSTransition>
       <CSSTransition
-      in={showMessage}
+        in={showUpdateMessage}
+        nodeRef={nodeRef3}
+        timeout={300}
+        classNames="alert"
+        unmountOnExit
+        onEnter={() => setShowButton(false)}
+        onExited={() => setShowButton(true)}
+      >
+        <div className='fixed z-10 top-0 left-0 w-full h-full' ref={nodeRef3}>
+        <UpdateModal setShowUpdateMessage={setShowUpdateMessage} id={id} />
+        </div>
+      </CSSTransition>
+      <CSSTransition
+      in={showDeleteMessage || showUpdateMessage}
       nodeRef={nodeRef2}
       timeout={300}
       classNames="background"
