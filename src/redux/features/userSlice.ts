@@ -18,7 +18,6 @@ const initialState: UserState = {
 export const addUser = createAsyncThunk(
   'user/addUser',
   async (user: User | undefined) => {
-    console.log(user)
     return user;
   },
 );

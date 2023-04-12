@@ -41,8 +41,9 @@ function Signup() {
           </div>
           <div className="flex items-end flex-col w-full">
             <button
-              className="float-right bg-primary-color font-bold uppercase text-white w-auto py-1 rounded-lg min-w-[111px]"
+              className={`float-right ${inputText?.name ? 'bg-primary-color' : 'bg-gray-dark'} font-bold uppercase text-white w-auto py-1 rounded-lg min-w-[111px]`}
               type="submit"
+              disabled={inputText?.name ? false : true}
             >
               Enter
             </button>
