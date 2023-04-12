@@ -115,6 +115,29 @@ const careerSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message ?? 'Failed to add career.'
       })
+      .addCase(updateCareer.pending, (state, action) => {
+        state.isLoading = true
+        state.error = null
+      })
+      .addCase(updateCareer.fulfilled, (state, action) => {
+        state.isLoading = false
+
+        const { content, title, id } = action.meta.arg
+
+        const updatedCareers = state.careers.map((career) => {
+          if(career.id === id) {
+            return { ...career, title, content}
+          } else {
+            return career
+          }
+        })
+
+        state.careers = updatedCareers
+      })
+      .addCase(updateCareer.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? 'Failed to update career.'
+      })
   },
 });
 
