@@ -16,7 +16,7 @@ function MainScreen() {
   useEffect(() => {
     if(user.name === '') navigate('/signup')
     dispatch(fetchCareers())
-  },[dispatch])
+  },[])
 
   return (
     <Container>

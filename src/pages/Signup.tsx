@@ -12,11 +12,12 @@ function Signup() {
   const { user } = useSelector((state: RootState) => state.user);
 
   const submit = () => {
-    dispatch(addUser(inputText));
+    if (inputText !== undefined)
+      dispatch(addUser(inputText));
   };
 
   useEffect(() => {
-    if (user.name !== "") navigate("/");
+    if (user.name !== '') navigate("/");
   }, [submit]);
 
   return (

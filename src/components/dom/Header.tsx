@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ThemeButton from './ThemeButton'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from "../../redux/store"
-import { removeUser } from "../../actions"
-import { useNavigate } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from "../../redux/store"
+import { addUser, removeUser } from "../../actions"
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
   const dispatch: AppDispatch = useDispatch()
+  const { user } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate()
 
   const handleClick = () => {
-    dispatch(removeUser())
+    dispatch(addUser({name: ''}))
+    
   }
+
+  useEffect(() => {
+    if(user.name === '') navigate('/signup')
+  }, [handleClick])
+
   return (
     <header className="bg-primary-color">
       <div className="mx-5 sm:mx-10 py-6 flex justify-between items-center">

@@ -19,8 +19,8 @@ const initialState: UserState = {
 
 export const addUser = createAsyncThunk(
   'user/addUser',
-  async (user: User | undefined) => {
-    if (user !== undefined) localStorage.setItem("username", user.name);
+  async (user: User) => {
+    localStorage.setItem("username", user.name);
     return user;
   },
 );
@@ -29,6 +29,7 @@ export const removeUser = createAsyncThunk(
   'user/removeUser',
   async () => {
     localStorage.removeItem("username")
+    return initialState.user
   },
 );
 
@@ -44,7 +45,6 @@ const userSlice = createSlice({
       })
       .addCase(addUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (action.payload !== undefined)
         state.user = action.payload
       })
       .addCase(addUser.rejected, (state, action) => {
@@ -57,8 +57,7 @@ const userSlice = createSlice({
       })
       .addCase(removeUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (action.payload !== undefined)
-        state.user.name = ''
+        state.user = action.payload
       })
       .addCase(removeUser.rejected, (state, action) => {
         state.isLoading = false;
