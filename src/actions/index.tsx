@@ -6,7 +6,8 @@ import {
 } from '../redux/features/careersSlice';
 
 import {
-  addUser
+  addUser,
+  removeUser
 } from '../redux/features/userSlice'
 
 export {
@@ -14,5 +15,6 @@ export {
   deleteCareer,
   addCareer,
   updateCareer,
-  addUser
+  addUser,
+  removeUser
 };
