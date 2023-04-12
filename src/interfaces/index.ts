@@ -1,38 +1,38 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
 export interface User {
-  name: string
+  name: string;
 }
 export interface svgIconsProps {
-  className?: string
+  className?: string;
 }
 
 export interface ContainerProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export interface KeydownEvent {
-  charCode: number
-  keyCode: number
+  charCode: number;
+  keyCode: number;
 }
 
 export interface Career {
-  id: number | null
-  title: string
-  content: string
-  created_datetime: string | null
-  username: string
+  id: number | null;
+  title: string;
+  content: string;
+  created_datetime: string | null;
+  username: string;
 }
 
 export interface AddCareer {
-  title: string
-  content: string
-  username: string
+  title: string;
+  content: string;
+  username: string;
 }
 
 export interface CareersGridProp {
-  careers: Career[]
+  careers: Career[];
 }
 export interface CareerCardProp {
-  data: Career
+  data: Career;
 }

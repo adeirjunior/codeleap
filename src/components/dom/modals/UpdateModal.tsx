@@ -65,7 +65,9 @@ function UpdateModal({ setShowUpdateMessage, id }) {
             Cancel
           </button>
           <button
-            className={`${career.title && career.content ? 'bg-[#47B960]' : 'bg-gray-dark'} text-white py-1 px-6 rounded-lg font-bold`}
+            className={`${
+              career.title && career.content ? "bg-[#47B960]" : "bg-gray-dark"
+            } text-white py-1 px-6 rounded-lg font-bold`}
             type="submit"
             disabled={career.title && career.content ? false : true}
           >

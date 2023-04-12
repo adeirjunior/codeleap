@@ -4,15 +4,14 @@ import React from "react";
 import Signup from "./pages/Signup";
 
 const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <MainScreen />,
-    },
-    {
-      path: '/signup',
-      element: <Signup/>
-    }
-])
+  {
+    path: "/",
+    element: <MainScreen />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+]);
 
-
-export default router
+export default router;

@@ -1,5 +1,5 @@
-import React from 'react'
-import { svgIconsProps } from '../../interfaces'
+import React from "react";
+import { svgIconsProps } from "../../interfaces";
 
 export default function Edit({ className }: svgIconsProps) {
   return (
@@ -20,5 +20,5 @@ export default function Edit({ className }: svgIconsProps) {
         fill="white"
       />
     </svg>
-  )
+  );
 }

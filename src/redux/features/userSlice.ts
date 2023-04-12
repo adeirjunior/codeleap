@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { User} from '../../interfaces'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { User } from "../../interfaces";
 
 interface UserState {
   user: User;
@@ -7,34 +7,28 @@ interface UserState {
   error: string | null;
 }
 
-const localStorageUsername = localStorage.getItem('username')
+const localStorageUsername = localStorage.getItem("username");
 
 const initialState: UserState = {
   user: {
-    name: localStorageUsername || ''
+    name: localStorageUsername || "",
   },
   isLoading: false,
   error: null,
 };
 
-export const addUser = createAsyncThunk(
-  'user/addUser',
-  async (user: User) => {
-    localStorage.setItem("username", user.name);
-    return user;
-  },
-);
+export const addUser = createAsyncThunk("user/addUser", async (user: User) => {
+  localStorage.setItem("username", user.name);
+  return user;
+});
 
-export const removeUser = createAsyncThunk(
-  'user/removeUser',
-  async () => {
-    localStorage.removeItem("username")
-    return initialState.user
-  },
-);
+export const removeUser = createAsyncThunk("user/removeUser", async () => {
+  localStorage.removeItem("username");
+  return initialState.user;
+});
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -45,11 +39,11 @@ const userSlice = createSlice({
       })
       .addCase(addUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload
+        state.user = action.payload;
       })
       .addCase(addUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to add User.'
+        state.error = action.error.message ?? "Failed to add User.";
       })
       .addCase(removeUser.pending, (state) => {
         state.isLoading = true;
@@ -57,12 +51,12 @@ const userSlice = createSlice({
       })
       .addCase(removeUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload
+        state.user = action.payload;
       })
       .addCase(removeUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to remove User.'
-      })
+        state.error = action.error.message ?? "Failed to remove User.";
+      });
   },
 });
 

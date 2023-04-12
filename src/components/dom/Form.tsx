@@ -18,7 +18,7 @@ export default function Form() {
   const dispatch: AppDispatch = useDispatch();
 
   const submit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(addCareer(career));
   };
 
@@ -59,7 +59,9 @@ export default function Form() {
           ></textarea>
         </div>
         <button
-          className={`${career.content && career.title ? 'bg-primary-color' : 'bg-gray-dark'} text-white font-bold px-8 py-1 rounded-lg mt-6 float-right`}
+          className={`${
+            career.content && career.title ? "bg-primary-color" : "bg-gray-dark"
+          } text-white font-bold px-8 py-1 rounded-lg mt-6 float-right`}
           type="submit"
           disabled={career.content && career.title ? false : true}
         >

@@ -12,12 +12,11 @@ function Signup() {
   const { user } = useSelector((state: RootState) => state.user);
 
   const submit = () => {
-    if (inputText !== undefined)
-      dispatch(addUser(inputText));
+    if (inputText !== undefined) dispatch(addUser(inputText));
   };
 
   useEffect(() => {
-    if (user.name !== '') navigate("/");
+    if (user.name !== "") navigate("/");
   }, [submit]);
 
   return (
@@ -42,7 +41,9 @@ function Signup() {
           </div>
           <div className="flex items-end flex-col w-full">
             <button
-              className={`float-right ${inputText?.name ? 'bg-primary-color' : 'bg-gray-dark'} font-bold uppercase text-white w-auto py-1 rounded-lg min-w-[111px]`}
+              className={`float-right ${
+                inputText?.name ? "bg-primary-color" : "bg-gray-dark"
+              } font-bold uppercase text-white w-auto py-1 rounded-lg min-w-[111px]`}
               type="submit"
               disabled={inputText?.name ? false : true}
             >

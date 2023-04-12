@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL } from '../../constants';
-import { Career } from '../../interfaces';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_URL } from "../../constants";
+import { Career } from "../../interfaces";
 
 interface CareerState {
   careers: Career[];
@@ -14,65 +14,68 @@ const initialState: CareerState = {
   error: null,
 };
 
-export const fetchCareers = createAsyncThunk('career/fetchCareers', async () => {
-  const response = await fetch(API_URL)
-  return response.json()
-})
+export const fetchCareers = createAsyncThunk(
+  "career/fetchCareers",
+  async () => {
+    const response = await fetch(API_URL);
+    return response.json();
+  }
+);
 
 export const deleteCareer = createAsyncThunk(
-  'career/deleteCareer',
+  "career/deleteCareer",
   async (careerId: number | null) => {
     const response = await fetch(`${API_URL}${careerId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     if (!response.ok) {
-      throw new Error('Failed to delete career.');
+      throw new Error("Failed to delete career.");
     }
     return careerId;
-  },
+  }
 );
 
 export const addCareer = createAsyncThunk(
-  'career/addCareer',
+  "career/addCareer",
   async (career: Career) => {
-    const { content, title, username } = career
+    const { content, title, username } = career;
     const formatCareer = {
       username,
       title,
-      content
-    }
+      content,
+    };
     const response = await fetch(API_URL, {
-      method: 'POST',
-      body: JSON.stringify(formatCareer)
+      method: "POST",
+      body: JSON.stringify(formatCareer),
     });
     if (!response.ok) {
-      throw new Error('Failed to add career.');
+      throw new Error("Failed to add career.");
     }
     return response.body;
-  },
+  }
 );
 
 export const updateCareer = createAsyncThunk(
-  'career/updateCareer',
+  "career/updateCareer",
   async (career: Career) => {
-    const { content, title, id } = career
+    const { content, title, id } = career;
     const formatCareer = {
       title,
-      content
-    }
+      content,
+    };
     const response = await fetch(`${API_URL}${id}/`, {
-      method: 'PATCH',
-      body: JSON.stringify(formatCareer)
+      method: "PATCH",
+      body: JSON.stringify(formatCareer),
     });
     if (!response.ok) {
-      throw new Error('Failed to update career.');
+      throw new Error("Failed to update career.");
     }
     return response.body;
-  },
+  }
 );
 
 const careerSlice = createSlice({
-  name: 'career',
+  name: "career",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -87,7 +90,7 @@ const careerSlice = createSlice({
       })
       .addCase(fetchCareers.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to fetch careers.';
+        state.error = action.error.message ?? "Failed to fetch careers.";
       })
       .addCase(deleteCareer.pending, (state) => {
         state.isLoading = true;
@@ -96,12 +99,12 @@ const careerSlice = createSlice({
       .addCase(deleteCareer.fulfilled, (state, action) => {
         state.isLoading = false;
         state.careers = state.careers.filter(
-          (career) => career.id !== action.payload,
+          (career) => career.id !== action.payload
         );
       })
       .addCase(deleteCareer.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to delete career.';
+        state.error = action.error.message ?? "Failed to delete career.";
       })
       .addCase(addCareer.pending, (state) => {
         state.isLoading = true;
@@ -109,35 +112,35 @@ const careerSlice = createSlice({
       })
       .addCase(addCareer.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.careers.unshift(action.meta.arg)
+        state.careers.unshift(action.meta.arg);
       })
       .addCase(addCareer.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to add career.'
+        state.error = action.error.message ?? "Failed to add career.";
       })
       .addCase(updateCareer.pending, (state, action) => {
-        state.isLoading = true
-        state.error = null
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(updateCareer.fulfilled, (state, action) => {
-        state.isLoading = false
+        state.isLoading = false;
 
-        const { content, title, id } = action.meta.arg
+        const { content, title, id } = action.meta.arg;
 
         const updatedCareers = state.careers.map((career) => {
-          if(career.id === id) {
-            return { ...career, title, content}
+          if (career.id === id) {
+            return { ...career, title, content };
           } else {
-            return career
+            return career;
           }
-        })
+        });
 
-        state.careers = updatedCareers
+        state.careers = updatedCareers;
       })
       .addCase(updateCareer.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to update career.'
-      })
+        state.error = action.error.message ?? "Failed to update career.";
+      });
   },
 });
 

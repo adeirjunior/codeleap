@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import Moon from '../svgs/Moon'
-import Sun from '../svgs/Sun'
+import React, { useState } from "react";
+import Moon from "../svgs/Moon";
+import Sun from "../svgs/Sun";
 
 function ThemeButton() {
-  const [ theme, setTheme ] = useState(false)
+  const [theme, setTheme] = useState(false);
   return (
     <button
       title="Theme Button"
@@ -17,7 +17,7 @@ function ThemeButton() {
         <Sun className="w-6 h-6 stroke-white stroke-2" />
       )}
     </button>
-  )
+  );
 }
 
-export default ThemeButton
+export default ThemeButton;

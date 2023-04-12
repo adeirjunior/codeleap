@@ -1,6 +1,6 @@
-import Header from '../dom/Header'
-import { ContainerProps } from '../../interfaces'
-import React from 'react'
+import Header from "../dom/Header";
+import { ContainerProps } from "../../interfaces";
+import React from "react";
 
 export default function Container({ children }: ContainerProps) {
   return (
@@ -10,5 +10,5 @@ export default function Container({ children }: ContainerProps) {
         {children}
       </main>
     </div>
-  )
+  );
 }
