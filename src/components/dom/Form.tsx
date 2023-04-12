@@ -23,8 +23,8 @@ export default function Form() {
   };
 
   return (
-    <div className="border-[#999999] border rounded-2xl overflow-hidden mb-5 p-5">
-      <h2 className="text-xl font-bold">What's on your mind?</h2>
+    <div className="border-[#999999] border rounded-2xl mx-auto overflow-hidden mb-5 p-5 dark:text-white max-w-[700px]">
+      <h2 className="text-xl font-bold">What&apos;s on your mind?</h2>
       <form onSubmit={submit}>
         <div className="flex flex-col mt-4">
           <label className="text-base font-medium mb-1" htmlFor="title">
@@ -36,7 +36,7 @@ export default function Form() {
               setCareer({ ...career, title: event.target.value })
             }
             placeholder="Hello world"
-            className="border-[#999999] border rounded-md px-2 py-1 text-sm"
+            className="border-[#999999] border rounded-md px-2 py-1 text-sm dark:bg-federal-blue"
             title="title"
             id="title"
             type="text"
@@ -52,7 +52,7 @@ export default function Form() {
               setCareer({ ...career, content: event.target.value })
             }
             placeholder="Content here"
-            className="border-[#999999] border rounded-md px-2 py-1 text-sm resize-none"
+            className="border-[#999999] border rounded-md px-2 py-1 text-sm resize-none dark:bg-federal-blue"
             title="content"
             id="content"
             rows={4}

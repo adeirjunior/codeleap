@@ -4,7 +4,8 @@ import { Career } from "../../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 
-function UpdateModal({ setShowUpdateMessage, id }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function UpdateModal({ setShowUpdateMessage, id }: any) {
   const {
     user: { name },
   } = useSelector((state: RootState) => state.user);
@@ -18,7 +19,7 @@ function UpdateModal({ setShowUpdateMessage, id }) {
   });
 
   return (
-    <div className="bg-white w-full max-w-[660px] p-5 fixed top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 border border-[#999999] rounded-xl">
+    <div className="bg-white dark:bg-federal-blue dark:text-white w-full max-w-[660px] p-5 fixed top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 border border-[#999999] rounded-xl">
       <form
         onSubmit={() => {
           setShowUpdateMessage(false);
@@ -35,7 +36,7 @@ function UpdateModal({ setShowUpdateMessage, id }) {
               setCareer({ ...career, title: event.target.value })
             }
             placeholder="Hello world"
-            className="border-[#999999] border rounded-md px-2 py-1 text-sm"
+            className="border-[#999999] border rounded-md px-2 py-1 text-sm dark:bg-federal-blue"
             title="title"
             id="title"
             type="text"
@@ -50,7 +51,7 @@ function UpdateModal({ setShowUpdateMessage, id }) {
               setCareer({ ...career, content: event.target.value })
             }
             placeholder="Content here"
-            className="border-[#999999] border rounded-md px-2 py-1 text-sm resize-none"
+            className="border-[#999999] border rounded-md px-2 py-1 text-sm resize-none dark:bg-federal-blue"
             title="content"
             id="content"
             rows={4}

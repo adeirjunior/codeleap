@@ -7,6 +7,8 @@ import {
 
 import { addUser, removeUser } from "../redux/features/userSlice";
 
+import { setTheme } from "../redux/features/themeSlice";
+
 export {
   fetchCareers,
   deleteCareer,
@@ -14,4 +16,5 @@ export {
   updateCareer,
   addUser,
   removeUser,
+  setTheme
 };

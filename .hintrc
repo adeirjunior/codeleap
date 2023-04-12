@@ -11,5 +11,8 @@
     "not ios_saf <= 14.8",
     "not opera <= 95",
     "not samsung <= 20"
-  ]
+  ],
+  "hints": {
+    "no-inline-styles": "off"
+  }
 }

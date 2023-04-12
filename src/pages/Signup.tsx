@@ -20,8 +20,8 @@ function Signup() {
   }, [submit]);
 
   return (
-    <div className="fixed flex justify-center items-center top-0 left-0 w-full h-full bg-gray-light">
-      <div className="bg-white flex items-center w-full max-w-[500px] flex-col p-6 rounded-xl border border-[#CCCCCC]">
+    <div className="fixed flex justify-center items-center top-0 left-0 w-full h-full bg-gray-light dark:bg-federal-blue dark:text-white">
+      <div className="bg-white flex items-center w-full max-w-[500px] flex-col p-6 rounded-xl border border-[#CCCCCC] dark:bg-federal-blue">
         <form className="w-full" onSubmit={submit}>
           <div className="flex flex-col w-full">
             <h2 className="text-xl font-bold mb-5">
@@ -33,7 +33,7 @@ function Signup() {
             <input
               onChange={(e) => setInputText({ name: e.target.value })}
               placeholder="John doe"
-              className="border border-[#777777] mb-4 rounded-lg px-3 py-1"
+              className="border border-[#777777] mb-4 rounded-lg px-3 py-1 dark:bg-federal-blue"
               type="text"
               id="username"
               required

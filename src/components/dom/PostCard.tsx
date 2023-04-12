@@ -1,10 +1,9 @@
 import Delete from "../svgs/Delete";
 import Edit from "../svgs/Edit";
 import { CareerCardProp, Career } from "../../interfaces";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
-import { deleteCareer } from "../../actions";
-import { AppDispatch, RootState } from "../../redux/store";
+import { RootState } from "../../redux/store";
 import { CSSTransition } from "react-transition-group";
 import DeleteModal from "./modals/DeleteModal";
 import UpdateModal from "./modals/UpdateModal";
@@ -14,9 +13,9 @@ export default function CareerCard({ data }: CareerCardProp) {
   const {
     user: { name },
   } = useSelector((state: RootState) => state.user);
-  const dispatch: AppDispatch = useDispatch();
   const dateOld = new Date(created_datetime ?? "");
   const [now, setNow] = useState(new Date());
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showButton, setShowButton] = useState<boolean>();
   const [showDeleteMessage, setShowDeleteMessage] = useState<boolean>(false);
   const [showUpdateMessage, setShowUpdateMessage] = useState<boolean>(false);
@@ -103,7 +102,7 @@ export default function CareerCard({ data }: CareerCardProp) {
             <p className="text-[#777777] font-bold">{`@${username}`}</p>
             <p className="text-[#777777] ">{timeAgo(dateOld)}</p>
           </div>
-          <p>{content}</p>
+          <p className="dark:text-white">{content}</p>
         </div>
       </div>
       <CSSTransition

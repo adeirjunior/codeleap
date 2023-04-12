@@ -21,7 +21,12 @@ function MainScreen() {
   return (
     <Container>
       <Form />
-      {careers.isLoading && "Loading..."}
+      {careers.isLoading && 
+        <div className="flex justify-center my-10 items-center">
+          <div style={{borderTopColor: 'transparent'}} className="w-8 h-8 border-4 border-primary-color rounded-full animate-spin"></div>
+          <p className="ml-2">loading...</p>
+        </div>
+      }
       {!careers.isLoading && <PostGrid careers={careers.careers} />}
     </Container>
   );

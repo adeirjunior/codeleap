@@ -2,14 +2,16 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 
 import React from "react";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
 
 function App() {
+  const { theme } = useSelector((state: RootState) => state.theme)
+
   return (
-    <Provider store={store}>
+    <div className={theme === 'ligth' ? '' : 'dark'}>
       <RouterProvider router={router} />
-    </Provider>
+    </div>
   );
 }
 

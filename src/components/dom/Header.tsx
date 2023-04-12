@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ThemeButton from "./ThemeButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-import { addUser, removeUser } from "../../actions";
+import { addUser } from "../../actions";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
