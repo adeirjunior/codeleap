@@ -118,6 +118,7 @@ const careerSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message ?? "Failed to add career.";
       })
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .addCase(updateCareer.pending, (state, action) => {
         state.isLoading = true;
         state.error = null;

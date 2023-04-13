@@ -30,7 +30,7 @@ function Header() {
           <button
             type="button"
             onClick={handleClick}
-            className="text-white font-bold ml-1"
+            className="text-white font-bold ml-2 p-1"
           >
             Sign out
           </button>

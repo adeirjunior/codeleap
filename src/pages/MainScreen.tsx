@@ -24,7 +24,7 @@ function MainScreen() {
       {careers.isLoading && 
         <div className="flex justify-center my-10 items-center">
           <div style={{borderTopColor: 'transparent'}} className="w-8 h-8 border-4 border-primary-color rounded-full animate-spin"></div>
-          <p className="ml-2">loading...</p>
+          <p className="ml-2 dark:text-white">loading...</p>
         </div>
       }
       {!careers.isLoading && <PostGrid careers={careers.careers} />}
